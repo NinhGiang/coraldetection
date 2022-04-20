@@ -1,0 +1,7 @@
+Flask
+opencv-python
+pyrebase4
+torch
+fastai==1.0.61
+torchvision
+gunicorn
