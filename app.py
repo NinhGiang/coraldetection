@@ -227,10 +227,7 @@ if __name__ == "__main__":
     model = torch.hub.load(
         "ultralytics/yolov5", "custom", path=str(os.getcwd())+'\\myyolov5.pt', force_reload=True, source='github', autoshape=True
     )  # force_reload = recache latest code
-
-    #model = torch.hub.load('/yolo/', 'myyolov5', pretrained=True, source='local')
     model.eval()
-
     data = fastai.vision.data.ImageDataBunch.from_folder(str(os.getcwd())+"\\data\\",
                                                          size=224, num_workers=6).normalize(([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]))
     #data = ImageDataLoaders.from_folder(str(os.getcwd())+"\\data\\",
