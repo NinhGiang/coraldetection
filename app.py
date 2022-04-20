@@ -2,6 +2,7 @@
 Run a rest API exposing the yolov5s object detection model
 """
 import argparse
+from importlib.resources import path
 import io
 from PIL import Image
 import os
@@ -226,6 +227,7 @@ if __name__ == "__main__":
     model = torch.hub.load(
         "ultralytics/yolov5", "custom", path=str(os.getcwd())+'\\myyolov5.pt', force_reload=True, source='github', autoshape=True
     )  # force_reload = recache latest code
+
     #model = torch.hub.load('/yolo/', 'myyolov5', pretrained=True, source='local')
     model.eval()
 
@@ -235,8 +237,8 @@ if __name__ == "__main__":
     #                                                     size=224, num_workers=6).normalize(([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]))
     #data = ImageDataLoaders.from_folder(str(os.getcwd())+"\\data\\", size=224, num_workers=6)
     #print(type(data))
-    modelc = fastai.vision.learner.cnn_learner(data, torchvision.models.resnet101)
-    modelc.load("best_resnet101_cpu")
+    modelc = fastai.vision.learner.cnn_learner(data, torchvision.models.resnet101, path="gs://crm-storage-v1.appspot.com/resnet/models/best_resnet101_cpu.pth")
+    #modelc.load("best_resnet101_cpu")
 
     put_usermedia = "https://coraldetectionmodel.azurewebsites.net/api/1/UserMedia"
     post_annotation = "https://coraldetectionmodel.azurewebsites.net/api/1/Annotation"
